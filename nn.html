@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Équations Différentielles – Cours complet avec exemples détaillés</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #faf2ff 0%, #fff0f7 40%, #eef3ff 100%);
+      color: #1e1b3b;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #8b5cf6, #ec489a, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-align: center;
+      letter-spacing: -0.02em;
+    }
+    .sub {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #5b4b8b;
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
+    .chapter {
+      margin-bottom: 4rem;
+    }
+    .chapter-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      background: rgba(255,245,250,0.7);
+      backdrop-filter: blur(4px);
+      display: inline-block;
+      padding: 0.4rem 1.8rem;
+      border-radius: 60px;
+      margin-bottom: 2rem;
+      border-left: 8px solid #f472b6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.93);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 1.6rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #c084fc;
+      background: white;
+      box-shadow: 0 28px 40px -14px rgba(139,92,246,0.2);
+    }
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #6d28d9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid #f472b6;
+      padding-left: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .badge {
+      background: #ffe4f0;
+      color: #be185d;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+    }
+    .formula {
+      background: #f3e8ff;
+      padding: 0.7rem;
+      border-radius: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+      overflow-x: auto;
+      font-weight: 500;
+    }
+    .steps {
+      background: #f0f4ff;
+      padding: 0.7rem 1rem;
+      border-radius: 1rem;
+      margin: 1rem 0;
+    }
+    .steps ol, .steps ul {
+      padding-left: 1.2rem;
+      margin: 0.4rem 0;
+    }
+    .steps li {
+      margin: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+    .example {
+      background: #fff0f5;
+      border-left: 4px solid #ec489a;
+      border-radius: 1rem;
+      padding: 0.8rem 1rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e9d5ff;
+      color: #6b21a5;
+    }
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.9rem; }
+      .chapter-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1><i class="fas fa-square-root-alt"></i> Équations différentielles</h1>
+  <div class="sub">Chapitres 4 & 5 — méthodes complètes, exemples intégralement détaillés <br> 🌸🎨 violet, rose & bleu pastel</div>
+
+  <!-- =================== CHAPITRE 4 =================== -->
+  <div class="chapter">
+    <div class="chapter-title"><i class="fas fa-waveform"></i> Chapitre 4 : Équations différentielles du premier ordre</div>
+    <div class="grid">
+      
+      <!-- Généralités -->
+      <div class="card">
+        <h3>📖 Généralités <span class="badge">Généralités</span></h3>
+        <div class="formula">\( F(x,y,y') = 0 \) ou \( y' = f(x,y) \)</div>
+        <div class="steps">
+          <p><strong>Définitions :</strong></p>
+          <ul>
+            <li>Une équation différentielle d'ordre 1 relie \( x, y, y' \).</li>
+            <li>Solution générale : famille de courbes dépendant d'une constante \( C \).</li>
+            <li>Solution particulière : déterminée par une condition initiale \( y(x_0)=y_0 \) (problème de Cauchy).</li>
+          </ul>
+          <p><strong>Classification :</strong> selon la forme (séparable, homogène, linéaire, Bernoulli, exacte, Riccati).</p>
+        </div>
+      </div>
+      
+      <!-- Variables séparables -->
+      <div class="card">
+        <h3>🔹 Variables séparables <span class="badge">Séparables</span></h3>
+        <div class="formula">\( g(y)dy = h(x)dx \)</div>
+        <div class="steps">
+          <ol>
+            <li>Mettre tous les \( y \) d'un côté, les \( x \) de l'autre.</li>
+            <li>Intégrer : \( \int g(y)dy = \int h(x)dx + C \).</li>
+            <li>Exprimer \( y \) si possible.</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>📘 Exemple détaillé :</strong> \( y' = 2x y \)<br>
+          → \( \frac{dy}{dx} = 2xy \) → \( \frac{dy}{y} = 2x dx \) (on suppose \( y\neq0 \))<br>
+          → \( \int \frac{dy}{y} = \int 2x dx \) → \( \ln|y| = x^2 + C \)<br>
+          → \( |y| = e^{x^2+C} = e^C e^{x^2} \) → \( y = K e^{x^2} \) avec \( K \in \mathbb{R} \).<br>
+          La solution \( y=0 \) est incluse dans \( K=0 \).
+        </div>
+      </div>
+      
+      <!-- Équations homogènes -->
+      <div class="card">
+        <h3>🔹 Homogènes <span class="badge">Homogènes</span></h3>
+        <div class="formula">\( y' = f\left(\frac{y}{x}\right) \)</div>
+        <div class="steps">
+          <ol>
+            <li>Poser \( u = \frac{y}{x} \) ⇒ \( y = ux \) et \( y' = u + x u' \).</li>
+            <li>Substituer : \( u + x u' = f(u) \) ⇒ \( x u' = f(u)-u \).</li>
+            <li>Séparer : \( \frac{du}{f(u)-u} = \frac{dx}{x} \).</li>
+            <li>Intégrer, puis remplacer \( u = y/x \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>🌟 Exemple détaillé :</strong> \( y' = \frac{y}{x} + \left(\frac{y}{x}\right)^2 \)<br>
+          → \( u = y/x \), alors \( u + x u' = u + u^2 \) ⇒ \( x u' = u^2 \) ⇒ \( \frac{du}{u^2} = \frac{dx}{x} \)<br>
+          → \( \int u^{-2} du = \int \frac{dx}{x} \) ⇒ \( -\frac{1}{u} = \ln|x| + C \) ⇒ \( u = -\frac{1}{\ln|x|+C} \)<br>
+          → \( y = ux = -\frac{x}{\ln|x|+C} \).
+        </div>
+      </div>
+      
+      <!-- Équations linéaires -->
+      <div class="card">
+        <h3>🔹 Linéaires <span class="badge">Linéaires</span></h3>
+        <div class="formula">\( y' + a(x)y = b(x) \)</div>
+        <div class="steps">
+          <ol>
+            <li>Facteur intégrant : \( \mu(x) = e^{\int a(x)dx} \).</li>
+            <li>Multiplier : \( \frac{d}{dx}(\mu y) = \mu b(x) \).</li>
+            <li>Intégrer : \( \mu y = \int \mu b(x) dx + C \).</li>
+            <li>Exprimer \( y \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>📌 Exemple détaillé :</strong> \( y' + \frac{2}{x}y = x^2 \) (x>0)<br>
+          → \( \int a = \int \frac{2}{x} dx = 2\ln x \) ⇒ \( \mu = e^{2\ln x} = x^2 \)<br>
+          → \( (x^2 y)' = x^4 \) ⇒ \( x^2 y = \frac{x^5}{5} + C \) ⇒ \( y = \frac{x^3}{5} + \frac{C}{x^2} \).
+        </div>
+      </div>
+      
+      <!-- Méthode de Bernoulli (pour linéaire) -->
+      <div class="card">
+        <h3>🔹 Méthode de Bernoulli <span class="badge">Bernoulli (linéaire)</span></h3>
+        <div class="formula">\( y = u v \) avec \( u' + a(x)u = 0 \)</div>
+        <div class="steps">
+          <ol>
+            <li>Choisir \( u = e^{-\int a dx} \).</li>
+            <li>Alors \( v' = \frac{b}{u} \) ⇒ intégrer \( v = \int \frac{b}{u} dx + C \).</li>
+            <li>Solution : \( y = uv \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>✨ Exemple :</strong> même équation \( y' + \frac{2}{x}y = x^2 \)<br>
+          → \( u = e^{-2\ln x} = x^{-2} \), \( v' = \frac{x^2}{x^{-2}} = x^4 \) → \( v = x^5/5 + C \)<br>
+          → \( y = x^{-2}(x^5/5+C) = x^3/5 + C/x^2 \), identique.
+        </div>
+      </div>
+      
+      <!-- Variation de la constante de Lagrange -->
+      <div class="card">
+        <h3>🔹 Variation constante <span class="badge">Lagrange</span></h3>
+        <div class="formula">\( y = C(x) e^{-\int a dx} \)</div>
+        <div class="steps">
+          <ol>
+            <li>Solution homogène : \( y_h = C e^{-\int a dx} \).</li>
+            <li>On pose \( C = C(x) \), on dérive et on substitue.</li>
+            <li>On obtient \( C'(x) = b(x) e^{\int a dx} \) ⇒ \( C(x) = \int b e^{\int a dx} dx + K \).</li>
+            <li>Donc \( y = e^{-\int a dx} \left( \int b e^{\int a dx} dx + K \right) \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>📙 Exemple :</strong> \( y' + 2y = e^{x} \)<br>
+          → \( \int a = 2x \), \( y_h = C e^{-2x} \), posons \( y = C(x)e^{-2x} \)<br>
+          → \( C'(x)e^{-2x} = e^{x} \) ⇒ \( C'(x) = e^{3x} \) ⇒ \( C(x) = \frac13 e^{3x} + K \)<br>
+          → \( y = e^{-2x}(\frac13 e^{3x}+K) = \frac13 e^{x} + K e^{-2x} \).
+        </div>
+      </div>
+      
+      <!-- Équation de Bernoulli (générale) -->
+      <div class="card">
+        <h3>🔹 Bernoulli générale <span class="badge">Bernoulli</span></h3>
+        <div class="formula">\( y' + a(x)y = b(x) y^{n},\; n\neq0,1 \)</div>
+        <div class="steps">
+          <ol>
+            <li>Diviser par \( y^{n} \) : \( y^{-n}y' + a(x) y^{1-n} = b(x) \).</li>
+            <li>Poser \( z = y^{1-n} \) ⇒ \( z' = (1-n) y^{-n} y' \).</li>
+            <li>Obtenir : \( \frac{1}{1-n} z' + a z = b \) ⇒ \( z' + (1-n)a z = (1-n)b \).</li>
+            <li>Résoudre cette équation linéaire en \( z \), puis revenir à \( y = z^{1/(1-n)} \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>🔧 Exemple détaillé :</strong> \( y' + \frac{1}{x}y = x y^2 \) (n=2)<br>
+          → Diviser par \( y^2 \) : \( y^{-2}y' + \frac{1}{x}y^{-1} = x \)<br>
+          → Poser \( z = y^{-1} \) ⇒ \( z' = -y^{-2}y' \) ⇒ \( -z' + \frac{1}{x}z = x \) ⇒ \( z' - \frac{1}{x}z = -x \)<br>
+          → Facteur intégrant \( \mu = e^{-\int 1/x dx} = 1/x \) ⇒ \( (z/x)' = -1 \) ⇒ \( z/x = -x + C \) ⇒ \( z = -x^2 + Cx \)<br>
+          → \( y = 1/z = \dfrac{1}{-x^2 + Cx} \).
+        </div>
+      </div>
+      
+      <!-- Équation différentielle totale (exacte) -->
+      <div class="card">
+        <h3>🔹 Équation exacte <span class="badge">Totale / Exacte</span></h3>
+        <div class="formula">\( M(x,y)dx + N(x,y)dy = 0 \) avec \( \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \)</div>
+        <div class="steps">
+          <ol>
+            <li>Vérifier la condition d'exactitude.</li>
+            <li>Trouver \( F \) telle que \( \frac{\partial F}{\partial x} = M \) ⇒ \( F = \int M dx + \varphi(y) \).</li>
+            <li>Dériver par rapport à \( y \) : \( \frac{\partial F}{\partial y} = \frac{\partial}{\partial y}\int M dx + \varphi'(y) = N \) ⇒ déterminer \( \varphi'(y) \).</li>
+            <li>Intégrer \( \varphi'(y) \) pour obtenir \( \varphi(y) \).</li>
+            <li>Solution implicite : \( F(x,y) = C \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>🎯 Exemple détaillé :</strong> \( (2xy+1)dx + (x^2+3y^2)dy = 0 \)<br>
+          → \( M_y = 2x \), \( N_x = 2x \) ⇒ exacte.<br>
+          → \( F = \int (2xy+1)dx = x^2y + x + \varphi(y) \).<br>
+          → \( F_y = x^2 + \varphi'(y) = x^2+3y^2 \) ⇒ \( \varphi'(y)=3y^2 \) ⇒ \( \varphi(y)=y^3 \).<br>
+          → Solution : \( x^2y + x + y^3 = C \).
+        </div>
+      </div>
+      
+      <!-- Équation de Riccati -->
+      <div class="card">
+        <h3>🔹 Riccati <span class="badge">Riccati</span></h3>
+        <div class="formula">\( y' = a(x)y^2 + b(x)y + c(x) \)</div>
+        <div class="steps">
+          <ol>
+            <li>Connaître une solution particulière \( y_1 \) (souvent donnée ou devinée).</li>
+            <li>Poser \( y = y_1 + \frac{1}{z} \).</li>
+            <li>Substituer, simplifier → équation linéaire en \( z \) : \( z' + [b+2a y_1]z = -a \).</li>
+            <li>Résoudre pour \( z \), puis \( y = y_1 + 1/z \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>💡 Exemple détaillé :</strong> \( y' = y^2 - \frac{2}{x^2} \) avec \( y_1 = \frac{1}{x} \)<br>
+          → Posons \( y = \frac{1}{x} + \frac{1}{z} \).<br>
+          → Calculer \( y' = -\frac{1}{x^2} - \frac{z'}{z^2} \). Remplacer :<br>
+          \( -\frac{1}{x^2} - \frac{z'}{z^2} = \left(\frac{1}{x}+\frac{1}{z}\right)^2 - \frac{2}{x^2} \)<br>
+          → Développer : \( \frac{1}{x^2}+\frac{2}{xz}+\frac{1}{z^2} - \frac{2}{x^2} = -\frac{1}{x^2} + \frac{2}{xz} + \frac{1}{z^2} \)<br>
+          → Égalité : \( -\frac{1}{x^2} - \frac{z'}{z^2} = -\frac{1}{x^2} + \frac{2}{xz} + \frac{1}{z^2} \) ⇒ \( -\frac{z'}{z^2} = \frac{2}{xz} + \frac{1}{z^2} \)<br>
+          → Multiplier par \( -z^2 \) : \( z' = -\frac{2}{x}z - 1 \) ⇒ \( z' + \frac{2}{x}z = -1 \)<br>
+          → Facteur intégrant \( x^2 \) ⇒ \( (x^2 z)' = -x^2 \) ⇒ \( x^2 z = -\frac{x^3}{3} + C \) ⇒ \( z = -\frac{x}{3} + \frac{C}{x^2} \)<br>
+          → \( y = \frac{1}{x} + \frac{1}{-\frac{x}{3} + \frac{C}{x^2}} \).
+        </div>
+      </div>
+      
+      <!-- Classification récapitulative -->
+      <div class="card">
+        <h3>🔍 Classification <span class="badge">Choix de la méthode</span></h3>
+        <div class="steps">
+          <p><strong>Comment reconnaître et résoudre :</strong></p>
+          <ul>
+            <li><strong>Séparable</strong> → séparer \( x \) et \( y \), intégrer.</li>
+            <li><strong>Homogène</strong> → \( y' = f(y/x) \) → poser \( u=y/x \).</li>
+            <li><strong>Linéaire</strong> → facteur intégrant ou Lagrange.</li>
+            <li><strong>Bernoulli</strong> → transformation \( z = y^{1-n} \).</li>
+            <li><strong>Exacte</strong> → vérifier \( M_y=N_x \), chercher \( F \).</li>
+            <li><strong>Riccati</strong> → nécessite une solution particulière.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== CHAPITRE 5 =================== -->
+  <div class="chapter">
+    <div class="chapter-title"><i class="fas fa-chart-simple"></i> Chapitre 5 : Second ordre à coefficients constants</div>
+    <div class="grid">
+      
+      <!-- Second ordre homogène -->
+      <div class="card">
+        <h3>📌 Homogènes (coeffs constants) <span class="badge">2nd ordre homogène</span></h3>
+        <div class="formula">\( a y'' + b y' + c y = 0 \)</div>
+        <div class="steps">
+          <ol>
+            <li>Équation caractéristique : \( a r^2 + b r + c = 0 \).</li>
+            <li>Calculer \( \Delta = b^2 - 4ac \).</li>
+            <li>Trois cas :
+              <ul>
+                <li>\( \Delta > 0 \) : racines \( r_1, r_2 \) → \( y = C_1 e^{r_1 x} + C_2 e^{r_2 x} \).</li>
+                <li>\( \Delta = 0 \) : racine double \( r \) → \( y = (C_1 + C_2 x) e^{r x} \).</li>
+                <li>\( \Delta < 0 \) : \( r = \alpha \pm i\beta \) → \( y = e^{\alpha x}(C_1 \cos(\beta x) + C_2 \sin(\beta x)) \).</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>🔥 Exemple 1 :</strong> \( y'' - 5y' + 6y = 0 \) → \( r^2-5r+6=0 \) ⇒ \( r=2,3 \) ⇒ \( y=C_1 e^{2x}+C_2 e^{3x} \).<br>
+          <strong>🌸 Exemple 2 :</strong> \( y'' + 4y' + 4y = 0 \) → \( r^2+4r+4=0 \) ⇒ \( r=-2 \) double ⇒ \( y=(C_1+C_2 x)e^{-2x} \).<br>
+          <strong>💜 Exemple 3 :</strong> \( y'' + 2y' + 5y = 0 \) → \( r^2+2r+5=0 \) ⇒ \( r=-1\pm 2i \) ⇒ \( y=e^{-x}(C_1\cos 2x + C_2\sin 2x) \).
+        </div>
+      </div>
+      
+      <!-- Non homogènes : méthode des coefficients indéterminés -->
+      <div class="card">
+        <h3>📌 Non homogène (coeffs indéterminés) <span class="badge">Méthode des coeffs indéterminés</span></h3>
+        <div class="formula">\( a y'' + b y' + c y = f(x) \)</div>
+        <div class="steps">
+          <ol>
+            <li>Résoudre l'équation homogène → \( y_h \).</li>
+            <li>Deviner \( y_p \) selon \( f(x) \) :
+              <ul>
+                <li>\( f(x)=P_m(x) \) → \( y_p = Q_m(x) \) (polynôme de même degré).</li>
+                <li>\( f(x)=k e^{kx} \) → \( y_p = A e^{kx} \).</li>
+                <li>\( f(x)= \cos(\omega x) \) ou \( \sin(\omega x) \) → \( y_p = A\cos(\omega x)+B\sin(\omega x) \).</li>
+                <li>Si un terme de \( y_p \) est solution de l'homogène, multiplier par \( x \) (ou \( x^2 \) si double racine).</li>
+              </ul>
+            </li>
+            <li>Substituer \( y_p \) dans l'équation, identifier les coefficients.</li>
+            <li>Solution générale : \( y = y_h + y_p \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>📘 Exemple détaillé (pas de résonance) :</strong> \( y'' + 3y' + 2y = e^{2x} \)<br>
+          → \( y_h = C_1 e^{-x} + C_2 e^{-2x} \).<br>
+          → On pose \( y_p = A e^{2x} \) ⇒ \( y_p' = 2A e^{2x} \), \( y_p'' = 4A e^{2x} \)<br>
+          → Substituer : \( 4A e^{2x} + 6A e^{2x} + 2A e^{2x} = 12A e^{2x} = e^{2x} \) ⇒ \( A = \frac{1}{12} \)<br>
+          → \( y = C_1 e^{-x} + C_2 e^{-2x} + \frac{1}{12} e^{2x} \).<br>
+          <strong>⚠️ Avec résonance :</strong> \( y'' - y = e^{x} \), \( y_h = C_1 e^{x} + C_2 e^{-x} \) → on pose \( y_p = A x e^{x} \) → après calcul, \( A = 1/2 \).
+        </div>
+      </div>
+      
+      <!-- Méthode de variation des constantes (2nd ordre) -->
+      <div class="card">
+        <h3>📌 Variation des constantes (Lagrange) <span class="badge">2nd ordre général</span></h3>
+        <div class="formula">\[ y_p = -y_1 \int \frac{y_2 f(x)}{W} dx + y_2 \int \frac{y_1 f(x)}{W} dx \]</div>
+        <div class="steps">
+          <ol>
+            <li>Déterminer deux solutions indépendantes \( y_1, y_2 \) de l'équation homogène.</li>
+            <li>Calculer le wronskien \( W = y_1 y_2' - y_2 y_1' \).</li>
+            <li>Appliquer la formule pour obtenir une solution particulière \( y_p \).</li>
+            <li>La solution générale : \( y = C_1 y_1 + C_2 y_2 + y_p \).</li>
+          </ol>
+        </div>
+        <div class="example">
+          <strong>🎯 Exemple détaillé :</strong> \( y'' + y = \tan x \)<br>
+          → \( y_h = C_1 \cos x + C_2 \sin x \) ⇒ \( y_1=\cos x, y_2=\sin x \)<br>
+          → \( W = \cos x \cdot \cos x - \sin x (-\sin x) = \cos^2 x + \sin^2 x = 1 \)<br>
+          → \( y_p = -\cos x \int \frac{\sin x \cdot \tan x}{1} dx + \sin x \int \frac{\cos x \cdot \tan x}{1} dx \)<br>
+          = \( -\cos x \int \frac{\sin^2 x}{\cos x} dx + \sin x \int \sin x dx \)<br>
+          = \( -\cos x \int (\sec x - \cos x) dx + \sin x (-\cos x) \)<br>
+          = \( -\cos x (\ln|\sec x + \tan x| - \sin x) - \sin x \cos x \)<br>
+          = \( -\cos x \ln|\sec x + \tan x| + \cos x \sin x - \sin x \cos x \) ⇒ \( y_p = -\cos x \ln|\sec x + \tan x| \)<br>
+          → Solution générale : \( y = C_1 \cos x + C_2 \sin x - \cos x \ln|\sec x + \tan x| \).
+        </div>
+      </div>
+      
+      <!-- Méthodes de résolution : synthèse -->
+      <div class="card">
+        <h3>📌 Synthèse des méthodes <span class="badge">Résolutions pratiques</span></h3>
+        <div class="steps">
+          <p><strong>Stratégie pour les équations du second ordre à coefficients constants :</strong></p>
+          <ul>
+            <li><strong>Homogène :</strong> toujours résoluble via l'équation caractéristique.</li>
+            <li><strong>Non homogène :</strong>
+              <ul>
+                <li>Si \( f(x) \) est combinaison d'exponentielles, sinus/cosinus ou polynômes → méthode des coefficients indéterminés (rapide).</li>
+                <li>Si \( f(x) \) est quelconque (tangente, logarithme, sécante, etc.) → variation des constantes (plus générale).</li>
+              </ul>
+            </li>
+            <li>Ne pas oublier le principe de superposition : \( y = y_h + y_p \).</li>
+          </ul>
+        </div>
+        <div class="example">
+          <strong>📌 Exemple complet :</strong> \( y'' + 4y = 5\cos(2x) \)<br>
+          → \( y_h = C_1 \cos 2x + C_2 \sin 2x \).<br>
+          → \( \cos 2x \) est solution de l'homogène → on essaie \( y_p = A x \cos 2x + B x \sin 2x \).<br>
+          → On calcule \( y_p', y_p'' \), on substitue : après simplification on obtient \( A=0, B=5/4 \)<br>
+          → \( y = C_1 \cos 2x + C_2 \sin 2x + \frac{5}{4}x \sin 2x \).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Récapitulatif des formules essentielles -->
+  <div style="background: linear-gradient(120deg, #f3e8ff, #ffecf5); border-radius: 2rem; padding: 1.2rem 1.8rem; margin-top: 1rem;">
+    <h3 style="color:#6d28d9;"><i class="fas fa-list-check"></i> Formulaire essentiel – résumé rapide</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: space-between; margin-top: 0.6rem;">
+      <div><strong>🔹 Séparable :</strong> \( \int g dy = \int h dx \)</div>
+      <div><strong>🔹 Linéaire ordre 1 :</strong> \( \mu = e^{\int a dx} \)</div>
+      <div><strong>🔹 Bernoulli :</strong> \( z = y^{1-n} \)</div>
+      <div><strong>🔹 Exacte :</strong> \( M_y = N_x \), \( F \) potentiel</div>
+      <div><strong>🔹 Riccati :</strong> \( y = y_1 + 1/z \)</div>
+      <div><strong>🔹 Ordre 2 homogène :</strong> \( a r^2 + b r + c =0 \)</div>
+      <div><strong>🔹 Variation 2nd ordre :</strong> \( y_p = -y_1\int\frac{y_2 f}{W}+y_2\int\frac{y_1 f}{W} \)</div>
+    </div>
+  </div>
+  <footer>
+    <i class="fas fa-graduation-cap"></i> Chapitres 4 & 5 – toutes les lois, méthodes pas à pas et exemples entièrement détaillés – design rose, violet & bleu.
+  </footer>
+</div>
+<script>
+  if (window.MathJax) MathJax.typesetPromise();
+</script>
+</body>
+</html>
